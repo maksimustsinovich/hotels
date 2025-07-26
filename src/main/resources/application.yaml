@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: hotels
+  jpa:
+    open-in-view: false
+
