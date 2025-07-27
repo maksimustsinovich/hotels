@@ -1,4 +1,4 @@
-package bu.ustsinovich.hotels;
+package by.ustsinovich.hotels;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
