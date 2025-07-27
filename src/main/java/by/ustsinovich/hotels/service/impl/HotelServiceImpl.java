@@ -7,6 +7,7 @@ import by.ustsinovich.hotels.repository.HotelRepository;
 import by.ustsinovich.hotels.service.HotelService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
@@ -17,6 +18,7 @@ public class HotelServiceImpl implements HotelService {
     private final HotelRepository hotelRepository;
 
     @Override
+    @Transactional
     public HotelPreviewDto createHotel(CreateHotelDto createHotelDto) {
         var hotel = hotelMapper.fromDto(createHotelDto);
 

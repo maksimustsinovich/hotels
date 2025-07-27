@@ -14,19 +14,19 @@ import lombok.Setter;
 @Embeddable
 public class Address {
 
-    @Column(name = "house_number")
+    @Column(name = "house_number", nullable = false)
     private Long houseNumber;
 
-    @Column(name = "street")
+    @Column(name = "street", nullable = false)
     private String street;
 
-    @Column(name = "city")
+    @Column(name = "city", nullable = false)
     private String city;
 
-    @Column(name = "country")
+    @Column(name = "country", nullable = false)
     private String country;
 
-    @Column(name = "post_code")
+    @Column(name = "post_code", nullable = false)
     private String postCode;
 
 }

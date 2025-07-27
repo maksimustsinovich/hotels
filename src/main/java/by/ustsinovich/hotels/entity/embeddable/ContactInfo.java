@@ -1,5 +1,6 @@
 package by.ustsinovich.hotels.entity.embeddable;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -13,8 +14,10 @@ import lombok.Setter;
 @Embeddable
 public class ContactInfo {
 
+    @Column(name = "phone", nullable = false)
     private String phone;
 
+    @Column(name = "email", nullable = false)
     private String email;
 
 }

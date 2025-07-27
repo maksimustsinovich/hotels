@@ -2,6 +2,7 @@ package by.ustsinovich.hotels.controller;
 
 import by.ustsinovich.hotels.dto.hotel.CreateHotelDto;
 import by.ustsinovich.hotels.dto.hotel.HotelPreviewDto;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -13,6 +14,6 @@ public interface HotelController {
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping
-    HotelPreviewDto createHotel(@RequestBody CreateHotelDto createHotelDto);
+    HotelPreviewDto createHotel(@Valid @RequestBody CreateHotelDto createHotelDto);
 
 }

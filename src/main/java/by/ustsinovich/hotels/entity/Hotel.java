@@ -22,13 +22,13 @@ public class Hotel {
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "name")
+    @Column(name = "name", nullable = false)
     private String name;
 
     @Column(name = "description")
     private String description;
 
-    @Column(name = "brand")
+    @Column(name = "brand", nullable = false)
     private String brand;
 
     @Embedded

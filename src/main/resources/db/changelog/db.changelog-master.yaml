@@ -1,13 +1,14 @@
 databaseChangeLog:
   - changeSet:
-      id: create-schema-1
-      author: Maksim Ustsinovich
+      id: 1753618756325-0
+      author: maksim
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
       changes:
         - sql:
             sql: CREATE SCHEMA IF NOT EXISTS hotels
   - changeSet:
-      id: 1753557950088-1
-      author: Maksim Ustsinovich
+      id: 1753618756325-1
+      author: maksim (generated)
       objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
       changes:
         - createTable:
@@ -21,36 +22,56 @@ databaseChangeLog:
                   name: id
                   type: BIGINT
               - column:
+                  constraints:
+                    nullable: false
                   name: name
                   type: VARCHAR(255)
               - column:
                   name: description
                   type: VARCHAR(255)
               - column:
+                  constraints:
+                    nullable: false
                   name: brand
                   type: VARCHAR(255)
               - column:
+                  constraints:
+                    nullable: false
                   name: house_number
                   type: BIGINT
               - column:
+                  constraints:
+                    nullable: false
                   name: street
                   type: VARCHAR(255)
               - column:
+                  constraints:
+                    nullable: false
                   name: city
                   type: VARCHAR(255)
               - column:
+                  constraints:
+                    nullable: false
                   name: country
                   type: VARCHAR(255)
               - column:
+                  constraints:
+                    nullable: false
                   name: post_code
                   type: VARCHAR(255)
               - column:
+                  constraints:
+                    nullable: false
                   name: phone
                   type: VARCHAR(255)
               - column:
+                  constraints:
+                    nullable: false
                   name: email
                   type: VARCHAR(255)
               - column:
+                  constraints:
+                    nullable: false
                   name: check_in
                   type: TIME
               - column:

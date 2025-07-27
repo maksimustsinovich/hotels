@@ -16,10 +16,10 @@ import java.time.LocalTime;
 @Embeddable
 public class ArrivalTime {
 
-    @Column(name = "check_in")
-    LocalTime checkIn;
+    @Column(name = "check_in", nullable = false)
+    private LocalTime checkIn;
 
     @Column(name = "check_out")
-    LocalTime checkOut;
+    private LocalTime checkOut;
 
 }
