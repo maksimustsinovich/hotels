@@ -1,0 +1,180 @@
+###
+# Create hotel with valid data - Success
+POST http://localhost:8080/property-view/hotels
+Content-Type: application/json
+
+{
+  "name": "DoubleTree by Hilton Minsk",
+  "description": "The DoubleTree by Hilton Hotel Minsk offers 193 luxurious rooms in the Belorussian capital and stunning views of Minsk city from the hotel's 20th floor ...",
+  "brand": "Hilton",
+  "address": {
+    "houseNumber": 9,
+    "street": "Pobediteley Avenue",
+    "city": "Minsk",
+    "country": "Belarus",
+    "postCode": "220004"
+  },
+  "contacts": {
+    "phone": "+375 17 309-80-00",
+    "email": "doubletreeminsk.info@hilton.com"
+  },
+  "arrivalTime": {
+    "checkIn": "14:00",
+    "checkOut": "12:00"
+  }
+}
+
+> {%
+    client.global.set("hotelId", response.body.id)
+    console.log("Hotel created with ID: " + response.body.id)
+%}
+
+###
+# Create hotel with null description - Success
+POST http://localhost:8080/property-view/hotels
+Content-Type: application/json
+
+{
+  "name": "The Ritz-Carlton Minsk",
+  "description": null,
+  "brand": "The Ritz-Carlton",
+  "address": {
+    "houseNumber": 15,
+    "street": "Nezavisimosti Avenue",
+    "city": "Minsk",
+    "country": "Belarus",
+    "postCode": "220030"
+  },
+  "contacts": {
+    "phone": "+375 17 289-10-00",
+    "email": "ritzcarlton@example.com"
+  },
+  "arrivalTime": {
+    "checkIn": "15:00",
+    "checkOut": "11:00"
+  }
+}
+
+###
+# Create hotel with empty description - Success
+POST http://localhost:8080/property-view/hotels
+Content-Type: application/json
+
+{
+  "name": "Crowne Plaza Minsk",
+  "description": "",
+  "brand": "Crowne Plaza",
+  "address": {
+    "houseNumber": 23,
+    "street": "Yakub Kolas Street",
+    "city": "Minsk",
+    "country": "Belarus",
+    "postCode": "220000"
+  },
+  "contacts": {
+    "phone": "+375 17 229-20-29",
+    "email": "crowneplaza@example.com"
+  },
+  "arrivalTime": {
+    "checkIn": "14:00",
+    "checkOut": "12:00"
+  }
+}
+
+###
+# Create hotel with null check-out time - Success
+POST http://localhost:8080/property-view/hotels
+Content-Type: application/json
+
+{
+  "name": "Minsk Marriott Hotel",
+  "description": "Modern hotel in the city center",
+  "brand": "Marriott",
+  "address": {
+    "houseNumber": 5,
+    "street": "Karl Marx Street",
+    "city": "Minsk",
+    "country": "Belarus",
+    "postCode": "220030"
+  },
+  "contacts": {
+    "phone": "+375 17 200-50-00",
+    "email": "marriott@example.com"
+  },
+  "arrivalTime": {
+    "checkIn": "13:00",
+    "checkOut": null
+  }
+}
+
+###
+# Create hotel with missing name - Validation error
+POST http://localhost:8080/property-view/hotels
+Content-Type: application/json
+
+{
+  "name": "",
+  "description": "Luxury hotel",
+  "brand": "Hilton",
+  "address": {
+    "houseNumber": 9,
+    "street": "Pobediteley Avenue",
+    "city": "Minsk",
+    "country": "Belarus",
+    "postCode": "220004"
+  },
+  "contacts": {
+    "phone": "+375 17 309-80-00",
+    "email": "doubletreeminsk.info@hilton.com"
+  },
+  "arrivalTime": {
+    "checkIn": "14:00",
+    "checkOut": "12:00"
+  }
+}
+
+###
+# Create hotel with missing brand - Validation error
+POST http://localhost:8080/property-view/hotels
+Content-Type: application/json
+
+{
+  "name": "DoubleTree by Hilton Minsk",
+  "description": "Luxury hotel",
+  "brand": "",
+  "address": {
+    "houseNumber": 9,
+    "street": "Pobediteley Avenue",
+    "city": "Minsk",
+    "country": "Belarus",
+    "postCode": "220004"
+  },
+  "contacts": {
+    "phone": "+375 17 309-80-00",
+    "email": "doubletreeminsk.info@hilton.com"
+  },
+  "arrivalTime": {
+    "checkIn": "14:00",
+    "checkOut": "12:00"
+  }
+}
+
+###
+# Create hotel with missing address - Validation error
+POST http://localhost:8080/property-view/hotels
+Content-Type: application/json
+
+{
+  "name": "DoubleTree by Hilton Minsk",
+  "description": "Luxury hotel",
+  "brand": "Hilton",
+  "address": null,
+  "contacts": {
+    "phone": "+375 17 309-80-00",
+    "email": "doubletreeminsk.info@hilton.com"
+  },
+  "arrivalTime": {
+    "checkIn": "14:00",
+    "checkOut": "12:00"
+  }
+}

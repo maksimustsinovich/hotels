@@ -1,6 +1,7 @@
 package by.ustsinovich.hotels.hotels;
 
 import by.ustsinovich.hotels.dto.hotel.CreateHotelDto;
+import by.ustsinovich.hotels.dto.hotel.HotelDto;
 import by.ustsinovich.hotels.dto.hotel.HotelPreviewDto;
 import by.ustsinovich.hotels.dto.AddressDto;
 import by.ustsinovich.hotels.dto.ArrivalTimeDto;
@@ -69,10 +70,14 @@ public class AddAmenitiesTests {
         // Act
         hotelService.addAmenitiesByHotelId(hotelId, amenities);
 
-        // ToDo: add get details method
-
         // Assert
-        Assertions.assertNotNull(hotelId);
+        HotelDto hotelWithAmenities = hotelService.getHotelById(hotelId);
+        Assertions.assertNotNull(hotelWithAmenities);
+        Assertions.assertEquals(4, hotelWithAmenities.amenities().size());
+        Assertions.assertTrue(hotelWithAmenities.amenities().contains("Free WiFi"));
+        Assertions.assertTrue(hotelWithAmenities.amenities().contains("Swimming Pool"));
+        Assertions.assertTrue(hotelWithAmenities.amenities().contains("Fitness Center"));
+        Assertions.assertTrue(hotelWithAmenities.amenities().contains("Restaurant"));
     }
 
     @Test
