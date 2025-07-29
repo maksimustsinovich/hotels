@@ -1,4 +1,4 @@
-package by.ustsinovich.hotels.controller;
+package by.ustsinovich.hotels.controller.rest;
 
 import by.ustsinovich.hotels.dto.hotel.CreateHotelDto;
 import by.ustsinovich.hotels.dto.hotel.HotelDto;
