@@ -3,4 +3,5 @@ spring:
     name: hotels
   jpa:
     open-in-view: false
-
+server:
+  port: 8092

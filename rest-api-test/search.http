@@ -1,0 +1,265 @@
+###
+# Create DoubleTree by Hilton Minsk
+POST http://localhost:8092/property-view/hotels
+Content-Type: application/json
+
+{
+  "name": "DoubleTree by Hilton Minsk",
+  "description": "Luxury hotel in the heart of Minsk",
+  "brand": "Hilton",
+  "address": {
+    "houseNumber": 9,
+    "street": "Pobediteley Avenue",
+    "city": "Minsk",
+    "country": "Belarus",
+    "postCode": "220004"
+  },
+  "contacts": {
+    "phone": "+375 17 309-80-00",
+    "email": "doubletree@hilton.com"
+  },
+  "arrivalTime": {
+    "checkIn": "14:00",
+    "checkOut": "12:00"
+  }
+}
+
+> {%
+    client.global.set("hotelId1", response.body.id)
+    console.log("Hotel 1 created with ID: " + response.body.id)
+%}
+
+###
+# Add amenities to DoubleTree by Hilton Minsk
+POST http://localhost:8092/property-view/hotels/{{hotelId1}}/amenities
+Content-Type: application/json
+
+[
+  "Free parking",
+  "Free WiFi",
+  "Non-smoking rooms"
+]
+
+###
+# Create The Ritz-Carlton Minsk
+POST http://localhost:8092/property-view/hotels
+Content-Type: application/json
+
+{
+  "name": "The Ritz-Carlton Minsk",
+  "description": "Premium luxury accommodation",
+  "brand": "The Ritz-Carlton",
+  "address": {
+    "houseNumber": 15,
+    "street": "Nezavisimosti Avenue",
+    "city": "Minsk",
+    "country": "Belarus",
+    "postCode": "220030"
+  },
+  "contacts": {
+    "phone": "+375 17 289-10-00",
+    "email": "ritzcarlton@minsk.com"
+  },
+  "arrivalTime": {
+    "checkIn": "15:00",
+    "checkOut": "11:00"
+  }
+}
+
+> {%
+    client.global.set("hotelId2", response.body.id)
+    console.log("Hotel 2 created with ID: " + response.body.id)
+%}
+
+###
+# Add amenities to The Ritz-Carlton Minsk
+POST http://localhost:8092/property-view/hotels/{{hotelId2}}/amenities
+Content-Type: application/json
+
+[
+  "Free WiFi",
+  "Non-smoking rooms",
+  "Concierge"
+]
+
+###
+# Create Hotel Moscow
+POST http://localhost:8092/property-view/hotels
+Content-Type: application/json
+
+{
+  "name": "Hotel Moscow",
+  "description": "Luxury hotel in Moscow center",
+  "brand": "Hilton",
+  "address": {
+    "houseNumber": 100,
+    "street": "Tverskaya Street",
+    "city": "Moscow",
+    "country": "Russia",
+    "postCode": "125009"
+  },
+  "contacts": {
+    "phone": "+7 495 123-45-67",
+    "email": "hotelmoscow@hilton.com"
+  },
+  "arrivalTime": {
+    "checkIn": "14:00",
+    "checkOut": "12:00"
+  }
+}
+
+> {%
+    client.global.set("hotelId3", response.body.id)
+    console.log("Hotel 3 created with ID: " + response.body.id)
+%}
+
+###
+# Add amenities to Hotel Moscow
+POST http://localhost:8092/property-view/hotels/{{hotelId3}}/amenities
+Content-Type: application/json
+
+[
+  "Free parking",
+  "Free WiFi",
+  "Business center"
+]
+
+###
+# Create Marriott Business Hotel
+POST http://localhost:8092/property-view/hotels
+Content-Type: application/json
+
+{
+  "name": "Marriott Business Hotel",
+  "description": "Modern business hotel",
+  "brand": "Marriott",
+  "address": {
+    "houseNumber": 25,
+    "street": "Business Street",
+    "city": "New York",
+    "country": "USA",
+    "postCode": "10001"
+  },
+  "contacts": {
+    "phone": "+1 212 555-1234",
+    "email": "marriott@ny.com"
+  },
+  "arrivalTime": {
+    "checkIn": "15:00",
+    "checkOut": "12:00"
+  }
+}
+
+> {%
+    client.global.set("hotelId4", response.body.id)
+    console.log("Hotel 4 created with ID: " + response.body.id)
+%}
+
+###
+# Add amenities to Marriott Business Hotel
+POST http://localhost:8092/property-view/hotels/{{hotelId4}}/amenities
+Content-Type: application/json
+
+[
+  "Free WiFi",
+  "Business center",
+  "Meeting rooms",
+  "Fitness center"
+]
+
+###
+# Create Budget Inn
+POST http://localhost:8092/property-view/hotels
+Content-Type: application/json
+
+{
+  "name": "Budget Inn",
+  "description": "Affordable accommodation",
+  "brand": "Budget Hotels",
+  "address": {
+    "houseNumber": 50,
+    "street": "Budget Street",
+    "city": "Berlin",
+    "country": "Germany",
+    "postCode": "10115"
+  },
+  "contacts": {
+    "phone": "+49 30 12345678",
+    "email": "budget@berlin.com"
+  },
+  "arrivalTime": {
+    "checkIn": "14:00",
+    "checkOut": "10:00"
+  }
+}
+
+> {%
+    client.global.set("hotelId5", response.body.id)
+    console.log("Hotel 5 created with ID: " + response.body.id)
+%}
+
+###
+# Add amenities to Budget Inn
+POST http://localhost:8092/property-view/hotels/{{hotelId5}}/amenities
+Content-Type: application/json
+
+[
+  "Free WiFi",
+  "Non-smoking rooms"
+]
+
+###
+# Search hotels by city - Minsk
+GET http://localhost:8092/property-view/search?city=Minsk
+
+###
+# Search hotels by brand - Hilton
+GET http://localhost:8092/property-view/search?brand=Hilton
+
+###
+# Search hotels by name - DoubleTree
+GET http://localhost:8092/property-view/search?name=DoubleTree
+
+###
+# Search hotels by country - Belarus
+GET http://localhost:8092/property-view/search?country=Belarus
+
+###
+# Search hotels by amenities - Free WiFi
+GET http://localhost:8092/property-view/search?amenities=Free WiFi
+
+###
+# Search hotels by multiple parameters - Hilton in Minsk
+GET http://localhost:8092/property-view/search?brand=Hilton&city=Minsk
+
+###
+# Search hotels with partial name match - ritz
+GET http://localhost:8092/property-view/search?name=ritz
+
+###
+# Search hotels with multiple amenities
+GET http://localhost:8092/property-view/search?amenities=Free WiFi,Free parking
+
+###
+# Search hotels with no results - Paris
+GET http://localhost:8092/property-view/search?city=Paris
+
+###
+# Search all hotels (no parameters)
+GET http://localhost:8092/property-view/search
+
+###
+# Search with empty parameter values
+GET http://localhost:8092/property-view/search?name=&city=&brand=
+
+###
+# Search hotels by name with special characters
+GET http://localhost:8092/property-view/search?name=Hilton%20Minsk
+
+###
+# Search hotels by city case insensitive - minsk
+GET http://localhost:8092/property-view/search?city=minsk
+
+###
+# Search hotels by brand case insensitive - hilton
+GET http://localhost:8092/property-view/search?brand=hilton

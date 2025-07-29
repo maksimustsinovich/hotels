@@ -1,6 +1,6 @@
 ###
 # Create hotel with valid data - Success
-POST http://localhost:8080/property-view/hotels
+POST http://localhost:8092/property-view/hotels
 Content-Type: application/json
 
 {
@@ -31,7 +31,7 @@ Content-Type: application/json
 
 ###
 # Create hotel with null description - Success
-POST http://localhost:8080/property-view/hotels
+POST http://localhost:8092/property-view/hotels
 Content-Type: application/json
 
 {
@@ -57,7 +57,7 @@ Content-Type: application/json
 
 ###
 # Create hotel with empty description - Success
-POST http://localhost:8080/property-view/hotels
+POST http://localhost:8092/property-view/hotels
 Content-Type: application/json
 
 {
@@ -83,7 +83,7 @@ Content-Type: application/json
 
 ###
 # Create hotel with null check-out time - Success
-POST http://localhost:8080/property-view/hotels
+POST http://localhost:8092/property-view/hotels
 Content-Type: application/json
 
 {
@@ -109,7 +109,7 @@ Content-Type: application/json
 
 ###
 # Create hotel with missing name - Validation error
-POST http://localhost:8080/property-view/hotels
+POST http://localhost:8092/property-view/hotels
 Content-Type: application/json
 
 {
@@ -135,7 +135,7 @@ Content-Type: application/json
 
 ###
 # Create hotel with missing brand - Validation error
-POST http://localhost:8080/property-view/hotels
+POST http://localhost:8092/property-view/hotels
 Content-Type: application/json
 
 {
@@ -161,7 +161,7 @@ Content-Type: application/json
 
 ###
 # Create hotel with missing address - Validation error
-POST http://localhost:8080/property-view/hotels
+POST http://localhost:8092/property-view/hotels
 Content-Type: application/json
 
 {
