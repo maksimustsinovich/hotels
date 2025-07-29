@@ -1,5 +1,5 @@
 ###
-# Create hotel with valid data - Success
+# Create a hotel for testing get operations
 POST http://localhost:8080/property-view/hotels
 Content-Type: application/json
 
@@ -26,11 +26,11 @@ Content-Type: application/json
 
 > {%
     client.global.set("hotelId", response.body.id)
-    console.log("Hotel ID: " + response.body.id)
+    console.log("Hotel created with ID: " + response.body.id)
 %}
 
 ###
-# Add amenities - Success
+# Add amenities to the hotel
 POST http://localhost:8080/property-view/hotels/{{hotelId}}/amenities
 Content-Type: application/json
 
@@ -39,10 +39,25 @@ Content-Type: application/json
   "Free WiFi",
   "Non-smoking rooms",
   "Concierge",
-  "On-site restaurant",
-  "Fitness center",
-  "Pet-friendly rooms",
-  "Room service",
-  "Business center",
-  "Meeting rooms"
+  "On-site restaurant"
 ]
+
+###
+# Get all hotels - Success
+GET http://localhost:8080/property-view/hotels
+
+###
+# Get hotel by valid ID - Success
+GET http://localhost:8080/property-view/hotels/{{hotelId}}
+
+###
+# Get hotel by invalid ID (non-existent) - Not found
+GET http://localhost:8080/property-view/hotels/999
+
+###
+# Get hotel by invalid ID (negative) - Validation error
+GET http://localhost:8080/property-view/hotels/-1
+
+###
+# Get hotel by invalid ID (zero) - Validation error
+GET http://localhost:8080/property-view/hotels/0

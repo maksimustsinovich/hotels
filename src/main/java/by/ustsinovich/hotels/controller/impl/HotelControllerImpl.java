@@ -2,11 +2,13 @@ package by.ustsinovich.hotels.controller.impl;
 
 import by.ustsinovich.hotels.controller.HotelController;
 import by.ustsinovich.hotels.dto.hotel.CreateHotelDto;
+import by.ustsinovich.hotels.dto.hotel.HotelDto;
 import by.ustsinovich.hotels.dto.hotel.HotelPreviewDto;
 import by.ustsinovich.hotels.service.HotelService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
 import java.util.Set;
 
 @RestController
@@ -23,6 +25,16 @@ public class HotelControllerImpl implements HotelController {
     @Override
     public void addAmenitiesByHotelId(Long hotelId, Set<String> amenities) {
         hotelService.addAmenitiesByHotelId(hotelId, amenities);
+    }
+
+    @Override
+    public List<HotelPreviewDto> getAllHotels() {
+        return hotelService.getAllHotels();
+    }
+
+    @Override
+    public HotelDto getHotelById(Long hotelId) {
+        return hotelService.getHotelById(hotelId);
     }
 
 }

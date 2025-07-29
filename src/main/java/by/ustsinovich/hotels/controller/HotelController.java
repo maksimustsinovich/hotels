@@ -1,6 +1,7 @@
 package by.ustsinovich.hotels.controller;
 
 import by.ustsinovich.hotels.dto.hotel.CreateHotelDto;
+import by.ustsinovich.hotels.dto.hotel.HotelDto;
 import by.ustsinovich.hotels.dto.hotel.HotelPreviewDto;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotEmpty;
@@ -10,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Set;
 
 @Validated
@@ -32,6 +34,19 @@ public interface HotelController {
             @NotNull(message = "Amenities cannot be null")
             @NotEmpty(message = "Amenities cannot be empty")
             @RequestBody Set<String> amenities
+    );
+
+    @ResponseStatus(HttpStatus.OK)
+    @GetMapping
+    List<HotelPreviewDto> getAllHotels();
+
+    @ResponseStatus(HttpStatus.OK)
+    @GetMapping("/{hotelId}")
+    HotelDto getHotelById(
+            @Valid
+            @NotNull(message = "Hotel ID cannot be null")
+            @Positive(message = "Hotel ID must be positive")
+            @PathVariable Long hotelId
     );
 
 }
