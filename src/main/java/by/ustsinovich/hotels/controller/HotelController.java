@@ -7,10 +7,12 @@ import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 import org.springframework.http.HttpStatus;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Set;
 
+@Validated
 @RequestMapping("/property-view/hotels")
 public interface HotelController {
 
@@ -25,6 +27,7 @@ public interface HotelController {
             @NotNull(message = "Hotel ID cannot be null")
             @Positive(message = "Hotel ID must be positive")
             @PathVariable Long hotelId,
+
             @Valid
             @NotNull(message = "Amenities cannot be null")
             @NotEmpty(message = "Amenities cannot be empty")
