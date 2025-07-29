@@ -221,4 +221,5 @@ public class AddAmenitiesTests {
                 () -> hotelService.addAmenitiesByHotelId(hotelId, emptyAmenities)
         );
     }
+
 }

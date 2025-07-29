@@ -444,4 +444,5 @@ public class CreateHotelTests {
                 "Should throw ConstraintViolationException when arrival time is null"
         );
     }
+
 }

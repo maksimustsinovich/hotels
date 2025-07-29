@@ -198,4 +198,5 @@ public class GetHotelsTests {
                 "Should throw ConstraintViolationException when ID is zero"
         );
     }
+
 }

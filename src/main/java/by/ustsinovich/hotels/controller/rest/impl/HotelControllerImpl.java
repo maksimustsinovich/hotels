@@ -1,6 +1,6 @@
-package by.ustsinovich.hotels.controller.impl;
+package by.ustsinovich.hotels.controller.rest.impl;
 
-import by.ustsinovich.hotels.controller.HotelController;
+import by.ustsinovich.hotels.controller.rest.HotelController;
 import by.ustsinovich.hotels.dto.hotel.CreateHotelDto;
 import by.ustsinovich.hotels.dto.hotel.HotelDto;
 import by.ustsinovich.hotels.dto.hotel.HotelPreviewDto;
