@@ -1,0 +1,25 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1753618756325-2
+      author: maksim ustsinovich
+      changes:
+        - createTable:
+            schemaName: hotels
+            tableName: hotel_amenities
+            columns:
+              - column:
+                  name: hotel_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_hotel_amenities_hotel
+                    references: hotels.hotels(id)
+              - column:
+                  name: amenity
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+        - addPrimaryKey:
+            schemaName: hotels
+            tableName: hotel_amenities
+            columnNames: hotel_id, amenity

@@ -9,6 +9,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @Getter
 @Setter
 @AllArgsConstructor
@@ -39,5 +42,16 @@ public class Hotel {
 
     @Embedded
     private ArrivalTime arrivalTime;
+
+    @ElementCollection
+    @CollectionTable(
+            schema = "hotels",
+            name = "hotel_amenities",
+            joinColumns = {
+                    @JoinColumn(name = "hotel_id")
+            }
+    )
+    @Column(name = "amenity")
+    private Set<String> amenities = new HashSet<>();
 
 }

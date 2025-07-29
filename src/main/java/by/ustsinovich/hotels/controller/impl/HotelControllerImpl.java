@@ -7,6 +7,8 @@ import by.ustsinovich.hotels.service.HotelService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Set;
+
 @RestController
 @RequiredArgsConstructor
 public class HotelControllerImpl implements HotelController {
@@ -16,6 +18,11 @@ public class HotelControllerImpl implements HotelController {
     @Override
     public HotelPreviewDto createHotel(CreateHotelDto createHotelDto) {
         return hotelService.createHotel(createHotelDto);
+    }
+
+    @Override
+    public void addAmenitiesByHotelId(Long hotelId, Set<String> amenities) {
+        hotelService.addAmenitiesByHotelId(hotelId, amenities);
     }
 
 }
