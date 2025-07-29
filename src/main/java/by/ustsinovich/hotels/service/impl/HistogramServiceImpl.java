@@ -20,7 +20,7 @@ public class HistogramServiceImpl implements HistogramService {
     private final HistogramStrategyFactory histogramStrategyFactory;
 
     @Override
-    @Transactional
+    @Transactional(readOnly = true)
     public Map<String, Long> getHistogramByParam(HistogramParameter param) {
         HistogramStrategy histogramStrategy = histogramStrategyFactory.chooseStrategy(param);
 
