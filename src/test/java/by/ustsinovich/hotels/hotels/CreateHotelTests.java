@@ -5,12 +5,15 @@ import by.ustsinovich.hotels.dto.hotel.HotelPreviewDto;
 import by.ustsinovich.hotels.dto.AddressDto;
 import by.ustsinovich.hotels.dto.ArrivalTimeDto;
 import by.ustsinovich.hotels.dto.ContactInfoDto;
+import jakarta.validation.ConstraintViolationException;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.DirtiesContext;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 
+@DisplayName("Create hotels")
 @SpringBootTest
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
 public class CreateHotelTests {
@@ -19,6 +22,7 @@ public class CreateHotelTests {
     private by.ustsinovich.hotels.service.HotelService hotelService;
 
     @Test
+    @DisplayName("Create hotel with all valid fields - Success")
     void shouldCreateHotelWithValidData() {
         // Arrange
         AddressDto address = AddressDto.builder()
@@ -66,6 +70,7 @@ public class CreateHotelTests {
     }
 
     @Test
+    @DisplayName("Create hotel with null description - Success")
     void shouldCreateHotelWithNullDescription() {
         // Arrange
         AddressDto address = AddressDto.builder()
@@ -105,6 +110,7 @@ public class CreateHotelTests {
     }
 
     @Test
+    @DisplayName("Create hotel with null check-out time - Success")
     void shouldCreateHotelWithNullCheckOutTime() {
         // Arrange
         AddressDto address = AddressDto.builder()
@@ -145,6 +151,7 @@ public class CreateHotelTests {
     }
 
     @Test
+    @DisplayName("Create hotel with empty description - Success")
     void shouldCreateHotelWithEmptyDescription() {
         // Arrange
         AddressDto address = AddressDto.builder()
@@ -181,5 +188,260 @@ public class CreateHotelTests {
         Assertions.assertNotNull(result, "Hotel preview should not be null");
         Assertions.assertEquals("", result.description(),
                 "Hotel description should be empty string");
+    }
+
+    @Test
+    @DisplayName("Create hotel with null name - Constraint violation")
+    void shouldThrowExceptionWhenNameIsNull() {
+        // Arrange
+        AddressDto address = AddressDto.builder()
+                .houseNumber(9L)
+                .street("Pobediteley Avenue")
+                .city("Minsk")
+                .country("Belarus")
+                .postCode("220004")
+                .build();
+
+        ContactInfoDto contacts = ContactInfoDto.builder()
+                .phone("+375 17 309-80-00")
+                .email("doubletreeminsk.info@hilton.com")
+                .build();
+
+        ArrivalTimeDto arrivalTime = ArrivalTimeDto.builder()
+                .checkIn("14:00")
+                .checkOut("12:00")
+                .build();
+
+        CreateHotelDto createHotelDto = CreateHotelDto.builder()
+                .name(null)
+                .description("Luxury hotel")
+                .brand("Hilton")
+                .address(address)
+                .contacts(contacts)
+                .arrivalTime(arrivalTime)
+                .build();
+
+        // Act & Assert
+        Assertions.assertThrows(
+                ConstraintViolationException.class,
+                () -> hotelService.createHotel(createHotelDto),
+                "Should throw ConstraintViolationException when name is null"
+        );
+    }
+
+    @Test
+    @DisplayName("Create hotel with empty name - Constraint violation")
+    void shouldThrowExceptionWhenNameIsEmpty() {
+        // Arrange
+        AddressDto address = AddressDto.builder()
+                .houseNumber(9L)
+                .street("Pobediteley Avenue")
+                .city("Minsk")
+                .country("Belarus")
+                .postCode("220004")
+                .build();
+
+        ContactInfoDto contacts = ContactInfoDto.builder()
+                .phone("+375 17 309-80-00")
+                .email("doubletreeminsk.info@hilton.com")
+                .build();
+
+        ArrivalTimeDto arrivalTime = ArrivalTimeDto.builder()
+                .checkIn("14:00")
+                .checkOut("12:00")
+                .build();
+
+        CreateHotelDto createHotelDto = CreateHotelDto.builder()
+                .name("")
+                .description("Luxury hotel")
+                .brand("Hilton")
+                .address(address)
+                .contacts(contacts)
+                .arrivalTime(arrivalTime)
+                .build();
+
+        // Act & Assert
+        Assertions.assertThrows(
+                ConstraintViolationException.class,
+                () -> hotelService.createHotel(createHotelDto),
+                "Should throw ConstraintViolationException when name is empty"
+        );
+    }
+
+    @Test
+    @DisplayName("Create hotel with null brand - Constraint violation")
+    void shouldThrowExceptionWhenBrandIsNull() {
+        // Arrange
+        AddressDto address = AddressDto.builder()
+                .houseNumber(9L)
+                .street("Pobediteley Avenue")
+                .city("Minsk")
+                .country("Belarus")
+                .postCode("220004")
+                .build();
+
+        ContactInfoDto contacts = ContactInfoDto.builder()
+                .phone("+375 17 309-80-00")
+                .email("doubletreeminsk.info@hilton.com")
+                .build();
+
+        ArrivalTimeDto arrivalTime = ArrivalTimeDto.builder()
+                .checkIn("14:00")
+                .checkOut("12:00")
+                .build();
+
+        CreateHotelDto createHotelDto = CreateHotelDto.builder()
+                .name("DoubleTree by Hilton Minsk")
+                .description("Luxury hotel")
+                .brand(null)
+                .address(address)
+                .contacts(contacts)
+                .arrivalTime(arrivalTime)
+                .build();
+
+        // Act & Assert
+        Assertions.assertThrows(
+                ConstraintViolationException.class,
+                () -> hotelService.createHotel(createHotelDto),
+                "Should throw ConstraintViolationException when brand is null"
+        );
+    }
+
+    @Test
+    @DisplayName("Create hotel with empty brand - Constraint violation")
+    void shouldThrowExceptionWhenBrandIsEmpty() {
+        // Arrange
+        AddressDto address = AddressDto.builder()
+                .houseNumber(9L)
+                .street("Pobediteley Avenue")
+                .city("Minsk")
+                .country("Belarus")
+                .postCode("220004")
+                .build();
+
+        ContactInfoDto contacts = ContactInfoDto.builder()
+                .phone("+375 17 309-80-00")
+                .email("doubletreeminsk.info@hilton.com")
+                .build();
+
+        ArrivalTimeDto arrivalTime = ArrivalTimeDto.builder()
+                .checkIn("14:00")
+                .checkOut("12:00")
+                .build();
+
+        CreateHotelDto createHotelDto = CreateHotelDto.builder()
+                .name("DoubleTree by Hilton Minsk")
+                .description("Luxury hotel")
+                .brand("")
+                .address(address)
+                .contacts(contacts)
+                .arrivalTime(arrivalTime)
+                .build();
+
+        // Act & Assert
+        Assertions.assertThrows(
+                ConstraintViolationException.class,
+                () -> hotelService.createHotel(createHotelDto),
+                "Should throw ConstraintViolationException when brand is empty"
+        );
+    }
+
+    @Test
+    @DisplayName("Create hotel with null address - Constraint violation")
+    void shouldThrowExceptionWhenAddressIsNull() {
+        // Arrange
+        ContactInfoDto contacts = ContactInfoDto.builder()
+                .phone("+375 17 309-80-00")
+                .email("doubletreeminsk.info@hilton.com")
+                .build();
+
+        ArrivalTimeDto arrivalTime = ArrivalTimeDto.builder()
+                .checkIn("14:00")
+                .checkOut("12:00")
+                .build();
+
+        CreateHotelDto createHotelDto = CreateHotelDto.builder()
+                .name("DoubleTree by Hilton Minsk")
+                .description("Luxury hotel")
+                .brand("Hilton")
+                .address(null)
+                .contacts(contacts)
+                .arrivalTime(arrivalTime)
+                .build();
+
+        // Act & Assert
+        Assertions.assertThrows(
+                ConstraintViolationException.class,
+                () -> hotelService.createHotel(createHotelDto),
+                "Should throw ConstraintViolationException when address is null"
+        );
+    }
+
+    @Test
+    @DisplayName("Create hotel with null contacts - Constraint violation")
+    void shouldThrowExceptionWhenContactsIsNull() {
+        // Arrange
+        AddressDto address = AddressDto.builder()
+                .houseNumber(9L)
+                .street("Pobediteley Avenue")
+                .city("Minsk")
+                .country("Belarus")
+                .postCode("220004")
+                .build();
+
+        ArrivalTimeDto arrivalTime = ArrivalTimeDto.builder()
+                .checkIn("14:00")
+                .checkOut("12:00")
+                .build();
+
+        CreateHotelDto createHotelDto = CreateHotelDto.builder()
+                .name("DoubleTree by Hilton Minsk")
+                .description("Luxury hotel")
+                .brand("Hilton")
+                .address(address)
+                .contacts(null)
+                .arrivalTime(arrivalTime)
+                .build();
+
+        // Act & Assert
+        Assertions.assertThrows(
+                ConstraintViolationException.class,
+                () -> hotelService.createHotel(createHotelDto),
+                "Should throw ConstraintViolationException when contacts is null"
+        );
+    }
+
+    @Test
+    @DisplayName("Create hotel with null arrival time - Constraint violation")
+    void shouldThrowExceptionWhenArrivalTimeIsNull() {
+        // Arrange
+        AddressDto address = AddressDto.builder()
+                .houseNumber(9L)
+                .street("Pobediteley Avenue")
+                .city("Minsk")
+                .country("Belarus")
+                .postCode("220004")
+                .build();
+
+        ContactInfoDto contacts = ContactInfoDto.builder()
+                .phone("+375 17 309-80-00")
+                .email("doubletreeminsk.info@hilton.com")
+                .build();
+
+        CreateHotelDto createHotelDto = CreateHotelDto.builder()
+                .name("DoubleTree by Hilton Minsk")
+                .description("Luxury hotel")
+                .brand("Hilton")
+                .address(address)
+                .contacts(contacts)
+                .arrivalTime(null)
+                .build();
+
+        // Act & Assert
+        Assertions.assertThrows(
+                ConstraintViolationException.class,
+                () -> hotelService.createHotel(createHotelDto),
+                "Should throw ConstraintViolationException when arrival time is null"
+        );
     }
 }

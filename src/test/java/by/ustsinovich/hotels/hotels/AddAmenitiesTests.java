@@ -5,9 +5,11 @@ import by.ustsinovich.hotels.dto.hotel.HotelPreviewDto;
 import by.ustsinovich.hotels.dto.AddressDto;
 import by.ustsinovich.hotels.dto.ArrivalTimeDto;
 import by.ustsinovich.hotels.dto.ContactInfoDto;
+import by.ustsinovich.hotels.exception.ResourceNotFoundException;
 import by.ustsinovich.hotels.service.HotelService;
 import jakarta.validation.ConstraintViolationException;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -15,6 +17,7 @@ import org.springframework.test.annotation.DirtiesContext;
 
 import java.util.Set;
 
+@DisplayName("Add amenities")
 @SpringBootTest
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
 public class AddAmenitiesTests {
@@ -23,6 +26,7 @@ public class AddAmenitiesTests {
     private HotelService hotelService;
 
     @Test
+    @DisplayName("Add amenities to existing hotel - Success")
     void shouldAddAmenitiesToExistingHotel() {
         // Arrange
         AddressDto address = AddressDto.builder()
@@ -65,11 +69,34 @@ public class AddAmenitiesTests {
         // Act
         hotelService.addAmenitiesByHotelId(hotelId, amenities);
 
+        // ToDo: add get details method
+
         // Assert
         Assertions.assertNotNull(hotelId);
     }
 
     @Test
+    @DisplayName("Add amenities to not existing hotel - Resource not found")
+    void shouldAddAmenitiesToNotExistingHotel() {
+        // Arrange
+        Long hotelId = 1L;
+
+        Set<String> amenities = Set.of(
+                "Free WiFi",
+                "Swimming Pool",
+                "Fitness Center",
+                "Restaurant"
+        );
+
+        // Act & Assert
+        Assertions.assertThrows(
+                ResourceNotFoundException.class,
+                () -> hotelService.addAmenitiesByHotelId(hotelId, amenities)
+        );
+    }
+
+    @Test
+    @DisplayName("Add amenities with null hotel ID - Constraint violation")
     void shouldThrowExceptionWhenHotelIdIsNull() {
         // Arrange
         Set<String> amenities = Set.of("Free WiFi", "Parking");
@@ -82,6 +109,7 @@ public class AddAmenitiesTests {
     }
 
     @Test
+    @DisplayName("Add amenities with negative hotel ID - Constraint violation")
     void shouldThrowExceptionWhenHotelIdIsNegative() {
         // Arrange
         Set<String> amenities = Set.of("Free WiFi", "Parking");
@@ -94,6 +122,7 @@ public class AddAmenitiesTests {
     }
 
     @Test
+    @DisplayName("Add amenities with zero hotel ID - Constraint violation")
     void shouldThrowExceptionWhenHotelIdIsZero() {
         // Arrange
         Set<String> amenities = Set.of("Free WiFi", "Parking");
@@ -106,6 +135,7 @@ public class AddAmenitiesTests {
     }
 
     @Test
+    @DisplayName("Add null amenities to existing hotel - Constraint violation")
     void shouldThrowExceptionWhenAmenitiesIsNull() {
         // Arrange
         AddressDto address = AddressDto.builder()
@@ -146,6 +176,7 @@ public class AddAmenitiesTests {
     }
 
     @Test
+    @DisplayName("Add empty amenities to existing hotel - Constraint violation")
     void shouldThrowExceptionWhenAmenitiesIsEmpty() {
         // Arrange
         AddressDto address = AddressDto.builder()
