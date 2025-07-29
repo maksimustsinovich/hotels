@@ -1,6 +1,6 @@
 ###
 # Create a hotel for testing get operations
-POST http://localhost:8080/property-view/hotels
+POST http://localhost:8092/property-view/hotels
 Content-Type: application/json
 
 {
@@ -31,7 +31,7 @@ Content-Type: application/json
 
 ###
 # Add amenities to the hotel
-POST http://localhost:8080/property-view/hotels/{{hotelId}}/amenities
+POST http://localhost:8092/property-view/hotels/{{hotelId}}/amenities
 Content-Type: application/json
 
 [
@@ -44,20 +44,20 @@ Content-Type: application/json
 
 ###
 # Get all hotels - Success
-GET http://localhost:8080/property-view/hotels
+GET http://localhost:8092/property-view/hotels
 
 ###
 # Get hotel by valid ID - Success
-GET http://localhost:8080/property-view/hotels/{{hotelId}}
+GET http://localhost:8092/property-view/hotels/{{hotelId}}
 
 ###
 # Get hotel by invalid ID (non-existent) - Not found
-GET http://localhost:8080/property-view/hotels/999
+GET http://localhost:8092/property-view/hotels/999
 
 ###
 # Get hotel by invalid ID (negative) - Validation error
-GET http://localhost:8080/property-view/hotels/-1
+GET http://localhost:8092/property-view/hotels/-1
 
 ###
 # Get hotel by invalid ID (zero) - Validation error
-GET http://localhost:8080/property-view/hotels/0
+GET http://localhost:8092/property-view/hotels/0
